@@ -51,7 +51,7 @@ with open(csvpath) as csvfile:
 printoutput = (
     f"Financial Analysis\n"
     f"---------------------------------------------\n"
-    f"Total Months: {str(totalMonths)}\n"
+    f"Total months: {str(totalMonths)}\n"
     f"Total: ${str(totalProfitLoss)}\n"
     f"Average change: ${str(round(avgChange,2))}\n"
     f"Greatest increase in profits: {greatestIncDate} (${str(greatestIncrease)})\n"
@@ -59,18 +59,16 @@ printoutput = (
 
 print(printoutput)    
 
-#write the analysis to the output file
-with open('analysis', 'PyBankoutput.txt', 'w') as f:
-    f.write(
-        f"Financial Analysis\n"
-        f"---------------------------------------------\n"
-        f"Total Months: {str(totalMonths)}\n"
-        f"Total: ${str(totalProfitLoss)}\n"
-        f"Average change: ${str(round(avgChange,2))}\n"
-        f"Greatest increase in profits: {greatestIncDate} (${str(greatestIncrease)})\n"
-        f"Greatest decrease in profits: {greatestDecDate} (${str(greatestDecrease)})\n")
-    
-#use this as template to send the analysis to the output file
-#sourceFile = open('python.txt', 'w')
-#print('Pretty cool, huh!', file = sourceFile)
-#sourceFile.close()
+lines = ['Financial Analysis', 
+        '----------------------------------------',
+        f'Total Months: {str(totalMonths)}',
+        f'Total: ${str(totalProfitLoss)}',
+        f'Average change: ${str(round(avgChange,2))}',
+        f'Greatest increase in profits: {greatestIncDate} (${str(greatestIncrease)})',
+        f'Greatest decrease in profits: {greatestDecDate} (${str(greatestDecrease)})\n',
+        '----------------------------------------']
+        
+with open('analysis/PyBankOutput.txt', 'w') as f:
+    for line in lines:
+        f.write(line)
+        f.write('\n')

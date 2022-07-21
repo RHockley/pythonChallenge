@@ -30,7 +30,7 @@ with open(csvPath, newline="") as csvfile:
         for votes in numVotes:
             percentage = (votes/totalVotes) * 100
             percentage = round(percentage)
-            percentage = "%.3f%%" % percentage
+            percentage = "%.3f" % percentage
             percentVotes.append(percentage)
 
         winner = max(numVotes)
@@ -42,7 +42,18 @@ print("----------------------------------------")
 print(f"Total votes: {str(totalVotes)}")
 print("----------------------------------------")
 for i in range(len(candidates)):
-    print(f"{candidates[i]}: {str(percentVotes[i])} ({str(numVotes)}))")
+    print(f"{candidates[i]}: {str(percentVotes[i])} ({str(numVotes[i])}))")
 print("----------------------------------------")
 print(f"Winner: {winningCandidate}")
 print("----------------------------------------")
+
+lines = ['Election Results', 
+        '----------------------------------------',
+        f'Total Votes: {str(totalVotes)}', 
+        '----------------------------------------', 
+        f'Winner: {winningCandidate}']
+        
+with open('analysis/PyPollOutput.txt', 'w') as f:
+    for line in lines:
+        f.write(line)
+        f.write('\n')
